@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U.S. Data Center Energy Mix</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0f1e;
+    color: #e8eaf6;
+    font-family: 'DM Sans', sans-serif;
+    padding: 32px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    background: #0f1628;
+    border: 1px solid #1e2d4a;
+    border-radius: 16px;
+    padding: 36px 40px 28px;
+    max-width: 780px;
+    width: 100%;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  }
+
+  .label-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4fc3f7;
+    background: rgba(79,195,247,0.1);
+    border: 1px solid rgba(79,195,247,0.25);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #7986a3;
+    margin-bottom: 28px;
+  }
+
+  .highlight-box {
+    background: rgba(255,107,107,0.07);
+    border: 1px solid rgba(255,107,107,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: #ffab91;
+    line-height: 1.5;
+  }
+
+  .highlight-box strong { color: #ff6b6b; }
+
+  .chart-row {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .donut-wrap {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    flex-shrink: 0;
+  }
+
+  .donut-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .donut-center .pct {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ff6b6b;
+    line-height: 1;
+  }
+
+  .donut-center .lbl {
+    font-size: 11px;
+    color: #7986a3;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .legend-list {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .swatch {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .legend-name {
+    font-size: 13px;
+    color: #c5cfe8;
+    flex: 1;
+  }
+
+  .legend-bar-wrap {
+    flex: 2;
+    background: #1a2540;
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .legend-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+
+  .legend-pct {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #7986a3;
+    width: 32px;
+    text-align: right;
+  }
+
+  .divider {
+    width: 1px;
+    height: 40px;
+    background: #1a2540;
+    margin: 4px 0;
+  }
+
+  .category-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #3d4f6e;
+    font-family: 'Space Mono', monospace;
+    margin: 6px 0 4px;
+  }
+
+  .source {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #1a2540;
+    font-size: 11px;
+    color: #3d4f6e;
+    font-family: 'Space Mono', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="label-tag">ENERGY MIX · EIA 2024</div>
+  <h1>U.S. Data Center Energy Mix, 2024</h1>
+  <p class="subtitle">Share of electricity by source powering U.S. data center operations</p>
+
+  <div class="highlight-box">
+    <strong>52% of data center electricity still comes from fossil fuels</strong> — despite major tech company sustainability pledges. Nuclear energy (12%) is gaining traction as a reliable, always-on, zero-carbon alternative.
+  </div>
+
+  <div class="chart-row">
+    <div class="donut-wrap">
+      <svg viewBox="0 0 220 220" width="220" height="220">
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Donut segments: cx=110, cy=110, r=80, inner r=52 -->
+        <!-- Total: 34+18+12+16+13+7 = 100% -->
+        <!-- strokeDasharray = pct/100 * 2*pi*80 = pct * 5.0265 -->
+        <!-- offsets: cumulative -->
+
+        <!-- Natural Gas 34% = 170.9 -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#e55039" stroke-width="36"
+          stroke-dasharray="170.9 331.1"
+          stroke-dashoffset="20.1"
+          transform="rotate(-90 110 110)"/>
+
+        <!-- Coal 18% = 90.5 -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#7f3b1e" stroke-width="36"
+          stroke-dasharray="90.5 411.5"
+          stroke-dashoffset="-150.8"
+          transform="rotate(-90 110 110)"/>
+
+        <!-- Wind 16% = 80.4 -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#26a69a" stroke-width="36"
+          stroke-dasharray="80.4 421.6"
+          stroke-dashoffset="-241.3"
+          transform="rotate(-90 110 110)"/>
+
+        <!-- Solar 13% = 65.3 -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#f9a825" stroke-width="36"
+          stroke-dasharray="65.3 436.7"
+          stroke-dashoffset="-321.7"
+          transform="rotate(-90 110 110)"/>
+
+        <!-- Nuclear 12% = 60.3 -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#7e57c2" stroke-width="36"
+          stroke-dasharray="60.3 441.7"
+          stroke-dashoffset="-387"
+          transform="rotate(-90 110 110)" filter="url(#glow)"/>
+
+        <!-- Hydro 7% = 35.2 -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#29b6f6" stroke-width="36"
+          stroke-dasharray="35.2 466.8"
+          stroke-dashoffset="-447.3"
+          transform="rotate(-90 110 110)"/>
+
+        <!-- Inner hole -->
+        <circle cx="110" cy="110" r="52" fill="#0f1628"/>
+      </svg>
+
+      <div class="donut-center">
+        <div class="pct">52%</div>
+        <div class="lbl">Fossil<br>Fuels</div>
+      </div>
+    </div>
+
+    <div class="legend-list">
+      <div class="category-label">⬛ Fossil Fuels</div>
+
+      <div class="legend-row">
+        <div class="swatch" style="background:#e55039"></div>
+        <div class="legend-name">Natural Gas</div>
+        <div class="legend-bar-wrap"><div class="legend-bar" style="width:34%;background:#e55039"></div></div>
+        <div class="legend-pct">34%</div>
+      </div>
+
+      <div class="legend-row">
+        <div class="swatch" style="background:#7f3b1e"></div>
+        <div class="legend-name">Coal</div>
+        <div class="legend-bar-wrap"><div class="legend-bar" style="width:18%;background:#7f3b1e"></div></div>
+        <div class="legend-pct">18%</div>
+      </div>
+
+      <div class="category-label" style="margin-top:8px">🌿 Renewables & Clean</div>
+
+      <div class="legend-row">
+        <div class="swatch" style="background:#26a69a"></div>
+        <div class="legend-name">Wind</div>
+        <div class="legend-bar-wrap"><div class="legend-bar" style="width:16%;background:#26a69a"></div></div>
+        <div class="legend-pct">16%</div>
+      </div>
+
+      <div class="legend-row">
+        <div class="swatch" style="background:#f9a825"></div>
+        <div class="legend-name">Solar</div>
+        <div class="legend-bar-wrap"><div class="legend-bar" style="width:13%;background:#f9a825"></div></div>
+        <div class="legend-pct">13%</div>
+      </div>
+
+      <div class="legend-row">
+        <div class="swatch" style="background:#7e57c2"></div>
+        <div class="legend-name">Nuclear ⚡</div>
+        <div class="legend-bar-wrap"><div class="legend-bar" style="width:12%;background:#7e57c2"></div></div>
+        <div class="legend-pct">12%</div>
+      </div>
+
+      <div class="legend-row">
+        <div class="swatch" style="background:#29b6f6"></div>
+        <div class="legend-name">Hydro</div>
+        <div class="legend-bar-wrap"><div class="legend-bar" style="width:7%;background:#29b6f6"></div></div>
+        <div class="legend-pct">7%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="source">
+    SOURCE: U.S. Energy Information Administration (EIA), Electric Power Annual 2024 &nbsp;·&nbsp; Lawrence Berkeley National Laboratory, United States Data Center Energy Usage Report
+  </div>
+</div>
+</body>
+</html>
