@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Not All Crashes Are Equal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0d0d18;
+  color: #e8e8f0;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 36px;
+}
 
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-size: 14px;
+  color: #7a7a99;
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.subtitle strong { color: #e8524a; }
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.crash-card {
+  border-radius: 14px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.crash-card::after {
+  content: '';
+  position: absolute;
+  right: -30px; top: -30px;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.card-speed { background: linear-gradient(135deg, #e8524a 0%, #c0392b 100%); }
+.card-speed::after { background: #ff8a80; }
+.card-turns { background: linear-gradient(135deg, #00e676 0%, #00c853 100%); }
+.card-turns::after { background: #69ffb0; }
+.card-lane  { background: linear-gradient(135deg, #3a4fd4 0%, #2236c2 100%); }
+.card-lane::after  { background: #7b8fff; }
+
+.card-meta {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  opacity: 0.75;
+}
+.card-speed .card-meta,
+.card-turns .card-meta { color: rgba(0,0,0,0.65); }
+.card-lane  .card-meta { color: rgba(255,255,255,0.7); }
+
+.card-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 58px; line-height: 1;
+}
+.card-speed .card-num,
+.card-turns .card-num { color: #000; }
+.card-lane  .card-num { color: #fff; }
+
+.card-lbl {
+  font-size: 13px; font-weight: 500; margin-top: -6px;
+}
+.card-speed .card-lbl,
+.card-turns .card-lbl { color: rgba(0,0,0,0.7); }
+.card-lane  .card-lbl { color: rgba(255,255,255,0.8); }
+
+.pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+}
+.card-speed .pill { background: rgba(0,0,0,0.2); color: #fff; }
+.card-turns .pill { background: rgba(0,0,0,0.18); color: rgba(0,0,0,0.85); }
+.card-lane  .pill { background: rgba(255,255,255,0.18); color: #fff; }
+
+.kill-rate {
+  font-size: 13px; font-weight: 700;
+  padding: 4px 10px; border-radius: 5px;
+  display: inline-block;
+}
+.card-speed .kill-rate { background: rgba(0,0,0,0.2); color: #fff; }
+.card-turns .kill-rate { background: rgba(0,0,0,0.15); color: #000; }
+.card-lane  .kill-rate { background: rgba(255,255,255,0.15); color: #fff; }
+
+.divider { height: 1px; }
+.card-speed .divider { background: rgba(0,0,0,0.15); }
+.card-turns .divider { background: rgba(0,0,0,0.15); }
+.card-lane  .divider { background: rgba(255,255,255,0.15); }
+
+.section-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.card-speed .section-label,
+.card-turns .section-label { color: rgba(0,0,0,0.5); }
+.card-lane  .section-label { color: rgba(255,255,255,0.5); }
+
+.card-text { font-size: 12.5px; line-height: 1.55; }
+.card-speed .card-text,
+.card-turns .card-text { color: rgba(0,0,0,0.72); }
+.card-lane  .card-text { color: rgba(255,255,255,0.82); }
+
+.fix-text { font-size: 12.5px; line-height: 1.55; font-weight: 500; }
+.card-speed .fix-text,
+.card-turns .fix-text { color: rgba(0,0,0,0.82); }
+.card-lane  .fix-text { color: rgba(255,255,255,0.9); }
+</style>
+</head>
+<body>
+
+<h1>Not All Crashes Are Equal</h1>
+<p class="subtitle">Unsafe turns have a <strong>higher fatality rate per crash than speeding</strong> — 2.31 vs. 2.17 deaths per 1,000 crashes. 24,005 people were injured across all three types in 2025.</p>
+
+<div class="cards">
+
+  <!-- SPEED -->
+  <div class="crash-card card-speed">
+    <div class="card-meta">LA County — 2025 · Factor 1 of 3 · Unsafe Speed</div>
+    <div class="card-num">54</div>
+    <div class="card-lbl">people killed · 14,577 injured</div>
+    <div class="pills">
+      <span class="pill">40.7% of all crashes</span>
+      <span class="pill">82 crashes/day</span>
+    </div>
+    <div class="kill-rate">2.17 deaths per 1,000 crashes</div>
+    <div class="divider"></div>
+    <div>
+      <div class="section-label">Where it happens</div>
+      <div class="card-text">Freeway corridors — I-10, I-5, SR-60 — during commute and late-night hours at high speed on roads people rely on daily.</div>
+    </div>
+    <div>
+      <div class="section-label">The fix</div>
+      <div class="fix-text">Expand AB 645 automated speed camera enforcement on I-10, I-5, and SR-60 where hotspot analysis shows the highest concentration of speed crashes.</div>
+    </div>
+  </div>
+
+  <!-- TURNS -->
+  <div class="crash-card card-turns">
+    <div class="card-meta">LA County — 2025 · Factor 2 of 3 · Unsafe Turns · ★ Highest Kill Rate</div>
+    <div class="card-num">42</div>
+    <div class="card-lbl">people killed · 6,406 injured</div>
+    <div class="pills">
+      <span class="pill">24.7% of all crashes</span>
+      <span class="pill">50 crashes/day</span>
+    </div>
+    <div class="kill-rate">2.31 deaths per 1,000 crashes — deadliest type</div>
+    <div class="divider"></div>
+    <div>
+      <div class="section-label">Where it happens</div>
+      <div class="card-text">Dense urban intersections in Southeast LA — quick decisions, heavy traffic, complex junctions. Fewer crashes than speed but a higher kill rate per incident.</div>
+    </div>
+    <div>
+      <div class="section-label">The fix</div>
+      <div class="fix-text">Fast-track protected left-turn signal retrofits at the highest-crash intersections in Southeast LA — an infrastructure failure and an environmental justice concern.</div>
+    </div>
+  </div>
+
+  <!-- LANE -->
+  <div class="crash-card card-lane">
+    <div class="card-meta">LA County — 2025 · Factor 3 of 3 · Lane Violations</div>
+    <div class="card-num">11</div>
+    <div class="card-lbl">people killed · 3,022 injured</div>
+    <div class="pills">
+      <span class="pill">13.1% of all crashes</span>
+      <span class="pill">26 crashes/day</span>
+    </div>
+    <div class="kill-rate">1.17 deaths per 1,000 crashes</div>
+    <div class="divider"></div>
+    <div>
+      <div class="section-label">Where it happens</div>
+      <div class="card-text">Freeway weaving and merging zones — I-110 and US-101 interchange areas generate a disproportionate share of these crashes.</div>
+    </div>
+    <div>
+      <div class="section-label">The fix</div>
+      <div class="fix-text">Commission an immediate safety audit of I-110 and US-101 interchange zones. Restriping, upgraded signage, and better lighting reduce lateral conflict at merge points.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
