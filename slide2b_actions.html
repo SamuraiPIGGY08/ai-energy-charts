@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Each Audience Can Do</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0d0d18;
+  color: #e8e8f0;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 36px;
+}
+
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.subtitle {
+  font-size: 14px;
+  color: #7a7a99;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.action-card {
+  background: #1a1a2b;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.audience-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.audience-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.icon-bos    { background: rgba(232,82,74,0.2); }
+.icon-ladot  { background: rgba(0,230,118,0.15); }
+.icon-caltrans { background: rgba(41,128,185,0.2); }
+
+.audience-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: #fff;
+}
+.audience-role {
+  font-size: 11px; color: #7a7a99;
+  letter-spacing: 0.5px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+}
+
+.crash-action {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.crash-tag {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px;
+  display: inline-block; margin-bottom: 2px;
+  width: fit-content;
+}
+.tag-speed  { background: rgba(232,82,74,0.25); color: #ff9a96; }
+.tag-turns  { background: rgba(0,230,118,0.2); color: #69ffb0; }
+.tag-lane   { background: rgba(58,79,212,0.3); color: #9aabff; }
+
+.action-text {
+  font-size: 13px; color: #9a9abb; line-height: 1.6;
+}
+.action-text strong { color: #e8e8f0; }
+</style>
+</head>
+<body>
+
+<h1>What Each Audience Can Do Right Now</h1>
+<p class="subtitle">Three crash types. Three agencies. Specific actions tied directly to where the data says the problem is worst.</p>
+
+<div class="action-grid">
+
+  <!-- BOS -->
+  <div class="action-card">
+    <div class="audience-header">
+      <div class="audience-icon icon-bos">🏛</div>
+      <div>
+        <div class="audience-name">Board of Supervisors</div>
+        <div class="audience-role">Policy, funding, and agency direction</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="crash-action">
+      <span class="crash-tag tag-speed">Unsafe Speed</span>
+      <div class="action-text">Direct Caltrans to expand <strong>AB 645 speed camera enforcement</strong> on I-10, I-5, and SR-60 — the corridors your hotspot analysis flagged as the highest-risk in the county.</div>
+    </div>
+    <div class="crash-action">
+      <span class="crash-tag tag-turns">Unsafe Turns</span>
+      <div class="action-text">Direct LADOT to fast-track <strong>protected left-turn retrofits</strong> at Southeast LA's highest-crash intersections. This is both an infrastructure failure and an environmental justice concern.</div>
+    </div>
+    <div class="crash-action">
+      <span class="crash-tag tag-lane">Lane Violations</span>
+      <div class="action-text"><strong>24,005 injuries</strong> across all three types = hospital costs, lost wages, and county liability. Even a 10% reduction saves tens of millions annually — the economic case for acting now.</div>
+    </div>
+  </div>
+
+  <!-- LADOT -->
+  <div class="action-card">
+    <div class="audience-header">
+      <div class="audience-icon icon-ladot">🚦</div>
+      <div>
+        <div class="audience-name">LADOT</div>
+        <div class="audience-role">Intersection design and signal programs</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="crash-action">
+      <span class="crash-tag tag-turns">Unsafe Turns</span>
+      <div class="action-text">Unsafe turns kill at a <strong>higher rate per crash than speeding</strong> — 2.31 vs. 2.17 deaths per 1,000. Protected left-turn retrofits at Southeast LA intersections are the highest-impact intervention per dollar you can make.</div>
+    </div>
+    <div class="crash-action">
+      <span class="crash-tag tag-lane">Lane Violations</span>
+      <div class="action-text">Improve <strong>signage, lane markings, and lighting</strong> at complex urban intersections where weaving and lane-change crashes cluster. Small infrastructure changes reduce the conditions that cause these crashes.</div>
+    </div>
+    <div class="crash-action">
+      <span class="crash-tag tag-speed">Unsafe Speed</span>
+      <div class="action-text">Coordinate with Caltrans on <strong>speed camera placement</strong> at the freeway on-ramps and arterial intersections where high-speed crashes transition from freeway to surface street.</div>
+    </div>
+  </div>
+
+  <!-- CALTRANS -->
+  <div class="action-card">
+    <div class="audience-header">
+      <div class="audience-icon icon-caltrans">🛣</div>
+      <div>
+        <div class="audience-name">Caltrans District 7</div>
+        <div class="audience-role">Freeway infrastructure and safety</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="crash-action">
+      <span class="crash-tag tag-speed">Unsafe Speed</span>
+      <div class="action-text">Deploy <strong>AB 645 automated speed cameras</strong> on I-10, I-5, and SR-60 — where 54 people were killed and 14,577 injured in speed-related crashes in 2025 alone.</div>
+    </div>
+    <div class="crash-action">
+      <span class="crash-tag tag-lane">Lane Violations</span>
+      <div class="action-text">Commission an immediate <strong>safety audit of the I-110 and US-101 interchange zones</strong> where merge conflicts generate a disproportionate share of lane-change crashes. Restriping and lighting upgrades are the fix.</div>
+    </div>
+    <div class="crash-action">
+      <span class="crash-tag tag-turns">Unsafe Turns</span>
+      <div class="action-text">Audit <strong>freeway on/off ramp geometry</strong> in Southeast LA where turning crashes from surface streets spill onto freeway approaches — a coordination point between Caltrans and LADOT jurisdiction.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
